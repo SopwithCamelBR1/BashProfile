@@ -1,0 +1,14 @@
+echo "Loading Custom Profile..."
+
+
+if [ -f ${GIT_BASH_PROFILE_ROOT}/helper_functions ]; then
+  source ${GIT_BASH_PROFILE_ROOT}/helper_functions
+else
+  echo "Could not load helper functions"
+  return 1
+fi
+
+
+# Load profiles
+load_profile "generic_profile"
+load_profile "git_profile"

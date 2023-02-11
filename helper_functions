@@ -1,0 +1,52 @@
+
+if [[ -f ${GIT_BASH_PROFILE_ROOT}/colours ]]; then
+  source ${GIT_BASH_PROFILE_ROOT}/colours
+fi
+
+error_print() {
+  echo -e "${Red}${1}${Color_Off}"
+}
+
+warning_print() {
+  echo -e "${Yellow}${1}${Color_Off}"  
+}
+
+success_print() {
+     echo -e "${Green}${1}${Color_Off}"
+}
+
+# helper funstion to load profile from file
+load_profile() {
+  if [[ -f ${GIT_BASH_PROFILE_ROOT}/${1} ]]; then
+    success_print "Loading ${1}"
+    source ${GIT_BASH_PROFILE_ROOT}/${1}
+  else
+    error_print "${Red}Could not find ${1}"
+  fi
+}
+
+# helper funstion to load profile from file
+pushd_custom() {
+  if [ $# -eq 0 ]; then
+    error_print "No arguments supplied"
+    return 1
+  fi
+  if [[ ! -d "${1}" ]]; then
+    error_print "Root must be directory"
+    return 1
+  fi
+
+  FULL_PATH=${1}/${2}
+
+  if [[ -d "${FULL_PATH}" ]]; then
+    pushd ${FULL_PATH}
+    return 0
+  fi
+  if [[ -f "${FULL_PATH}" ]]; then
+    warning_print "Target is file, changing to its directory"
+    pushd $(dirname ${FULL_PATH})
+    return 0
+  fi
+  warning_print "Target could not be found, changing to Root directory"
+  pushd ${1}
+}

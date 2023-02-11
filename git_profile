@@ -1,0 +1,16 @@
+# setting up directory stuff
+export GIT_ROOT="/f/git"
+alias cdgit="pushd_custom ${GIT_ROOT}"
+
+
+# git aliases
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.cm "commit -m"
+git config --global alias.ca "commit -am"
+git config --global alias.st status
+git config --global alias.l "log --oneline --graph --pretty=\"format:%Cred%h %Creset%s %Cblue%ci %Cgreen[%an]\""
+git config --global alias.sm submodule
+git config --global alias.sma "submodule add"
+git config --global alias.smu "submodule update"
