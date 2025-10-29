@@ -7,9 +7,11 @@ Clone this repository locally, making a note of the full path to the repository 
 Add the following to your `~/.bashrc` or `~/.bash_profile` file:
 
 ```
-export GIT_BASH_PROFILE_ROOT="<FULL_PATH_TO_LOCAL_COPY_OF_THIS_REPOSITORY>"
-if [ -f ${GIT_BASH_PROFILE_ROOT}/custom_profile ]; then
-  source ${GIT_BASH_PROFILE_ROOT}/custom_profile
+export BASH_PROFILE_LOADER_PATH="<FULL_PATH_TO_LOCAL_COPY_OF_THIS_REPOSITORY>"
+if [ -f ${BASH_PROFILE_LOADER_PATH}/load_profiles ]; then
+  source ${BASH_PROFILE_LOADER_PATH}/load_profiles
+else
+  echo "Could not load profiles form ${BASH_PROFILE_LOADER_PATH}"
 fi
 ```
 

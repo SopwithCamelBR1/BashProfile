@@ -1,0 +1,9 @@
+# KeePassXC
+export KEEPASSXC_EXEC_ROOT="/c/Program Files/KeePassXC"
+export KEEPASSXC_DB_ROOT="${HOME}/.keepassxc"
+export PATH=${PATH}:${KEEPASSXC_EXEC_ROOT}
+alias cdkpdbs="pushd_custom ${KEEPASSXC_DB_ROOT}"
+alias kp=keepassxc-cli.exe
+
+# USeful aliases
+alias reload="source ${HOME}/.bashrc"

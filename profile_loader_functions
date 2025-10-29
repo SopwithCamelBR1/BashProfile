@@ -1,0 +1,21 @@
+error_print() {
+  echo -e "${Red}${1}${Color_Off}"
+}
+
+warning_print() {
+  echo -e "${Yellow}${1}${Color_Off}"  
+}
+
+success_print() {
+     echo -e "${Green}${1}${Color_Off}"
+}
+
+# helper funstion to load profile from file
+load_profile() {
+  if [[ -f ${1} ]]; then
+    success_print "Loading ${1}"
+    source ${1}
+  else
+    error_print "${Red}Could not find ${1}"
+  fi
+}

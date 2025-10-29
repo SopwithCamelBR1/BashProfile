@@ -1,0 +1,6 @@
+# Aliases for switching to common directories
+alias cdhome="pushd_custom ${HOME}"
+
+# Aliases for lsiting directories
+alias l="ls"
+alias ll="ls -alh"

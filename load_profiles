@@ -1,0 +1,32 @@
+echo "Loading Custom Profile..."
+
+# Load colours
+if [[ -f ${BASH_PROFILE_LOADER_PATH}/colours ]]; then
+  source ${BASH_PROFILE_LOADER_PATH}/colours
+fi
+
+# Load profile loader functions
+if [ -f ${BASH_PROFILE_LOADER_PATH}/profile_loader_functions ]; then
+  source ${BASH_PROFILE_LOADER_PATH}/profile_loader_functions
+else
+  echo "${Red}Could not find profile loader${Color_Off}"
+  return 1
+fi
+
+# Add Functions to PATH
+export BASH_FUNCTIONS_ROOT="${BASH_PROFILE_LOADER_PATH}/functions"
+if [[ -d ${BASH_FUNCTIONS_ROOT} ]]; then
+  export PATH=${PATH}:${BASH_FUNCTIONS_ROOT}
+else
+  error_print "Could not add custom bash functions to Path"
+  return 1
+fi
+
+# Load profiles
+export BASH_PROFILES_PATH="${BASH_PROFILE_LOADER_PATH}/profiles"
+if [[ -d ${BASH_PROFILES_PATH} ]]; then
+  for FILE in ${BASH_PROFILES_PATH}/*; do load_profile ${FILE}; done
+else
+  error_print "${Red}Could not find profiles at ${BASH_PROFILES_PATH}${Color_Off}"
+  return 1
+fi
